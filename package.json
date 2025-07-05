@@ -4,13 +4,16 @@
   "description": "\"\"\u001b[DMicro services for handling Flights CURD\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx nodemon src/index"
   },
   "author": "Piyush",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
-    "nodemon": "^3.1.10"
+    "mysql2": "^3.14.1",
+    "nodemon": "^3.1.10",
+    "sequelize": "^6.37.7",
+    "sequelize-cli": "^6.6.3"
   }
 }
