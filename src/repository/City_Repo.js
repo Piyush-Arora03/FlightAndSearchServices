@@ -1,4 +1,5 @@
 const { City }=require(`../models/index`);
+const { Op }=require(`sequelize`);
 
 class CityRepository{
 
@@ -9,7 +10,7 @@ class CityRepository{
             });
             return city;
         } catch (error) {
-            console.log("Some error occured at repository level");
+            console.log(`Some error occured at repository level ${error}`);
             throw {error};
         }
     }
@@ -23,7 +24,7 @@ class CityRepository{
             });
             return true;
         } catch (error) {
-            console.log("Some error occured at repository level");
+            console.log(`Some error occured at repository level ${error}`);
             throw {error};
         }
     }
@@ -37,7 +38,7 @@ class CityRepository{
             });
             return true;
         } catch (error) {
-            console.log("Some error occured at repository level");
+            console.log(`Some error occured at repository level ${error}`);
             throw {error};
         }
     }
@@ -50,7 +51,27 @@ class CityRepository{
             }
             return city;
         } catch (error) {
-            console.log("Some error occured at repository level");
+            console.log(`Some error occured at repository level ${error}`);
+            throw {error};
+        }
+    }
+
+    async getAllCities(filter){
+        try {
+            if(filter.name){
+                const cities=await City.findAll({
+                    where:{
+                        name:{
+                            [Op.startsWith] : filter.name
+                        }
+                    }
+                });
+                return cities;
+            }
+            const cities=await City.findAll();
+            return cities;
+        } catch (error) {
+            console.log(`Some error occured at repository level ${error}`);
             throw {error};
         }
     }

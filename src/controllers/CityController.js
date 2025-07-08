@@ -82,9 +82,31 @@ const get = async (req, res) => {
     }
 }
 
+const getAll =async(req,res)=>{
+    try {
+        console.log(req.query);
+        const cities=await cityService.getAllCities(req.query);
+        return res.status(200).json({
+            data: cities,
+            success: true,
+            message: `successfully fetched cities`,
+            err: {}
+        });
+    } catch (error) {
+        console.log("Something went wrong at Controller level");
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: `unable to fetch cities`,
+            err: error
+        });
+    }
+}
+
 module.exports = {
     create,
     update,
     destroy,
-    get
+    get,
+    getAll
 }
