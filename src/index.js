@@ -2,6 +2,7 @@ const express=require("express");
 const CityRepo=require("./repository/City_Repo");
 const { PORT }=require("./config/ServerConfig");
 const bodyParser = require("body-parser");
+const ApiRoutes=require(`./routes/index`);
 
 const setUpAndStartServer= async() => {
     const PORT=3000;
@@ -13,12 +14,9 @@ const setUpAndStartServer= async() => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:true}));
     //app.listen takes a callback() and port use async cause some task may be tie taking to give response 
-     
+    app.use('/api',ApiRoutes);
     app.listen(PORT,async ()=> {
         console.log(`server started at ${PORT}`);
-        // pass the same " name: " other it will not match the attributes and save null value 
-        const res=await cityObj.createTable({name:"Faizabad"});
-        console.log(res);
     });
 }
 setUpAndStartServer();

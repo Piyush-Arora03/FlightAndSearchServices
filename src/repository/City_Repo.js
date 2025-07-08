@@ -4,7 +4,7 @@ class CityRepository{
 
     async createCity({name}){
         try {  
-            const city= await City.create({\
+            const city= await City.create({
                 name
             });
             return city;
@@ -45,6 +45,9 @@ class CityRepository{
     async getCity(cityId){
         try {
             const city=await City.findByPk(cityId);
+            if (!city) {
+                throw new Error("City not found");
+            }
             return city;
         } catch (error) {
             console.log("Some error occured at repository level");

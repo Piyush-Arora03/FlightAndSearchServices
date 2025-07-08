@@ -1,4 +1,4 @@
-const { CityRepository } = require(`../repository/index`);
+const { city_repository:CityRepository } = require(`../repository/index`);
 
 class CityService {
     constructor() {
@@ -11,7 +11,7 @@ class CityService {
             return city;
         } catch (error) {
             console.log("Some error occured at service level");
-            return { error };
+            throw { error };
         }
     }
 
@@ -21,7 +21,7 @@ class CityService {
             return true;
         } catch (error) {
             console.log("Some error occured at service level");
-            return { error };
+            throw { error };
         }
     }
 
@@ -31,17 +31,18 @@ class CityService {
             return true;
         } catch (error) {
             console.log("Some error occured at service level");
-            return { error };
+            throw { error };
         }
     }
 
     async getCity(cityId) {
         try {
-            const city = this.cityRepository.getCity(cityId);
+            const city = await this.cityRepository.getCity(cityId);
             return city;
         } catch (error) {
             console.log("Some error occured at service level");
-            return { error };
+            throw { error };
         }
     }
 }
+module.exports=CityService;
