@@ -2,23 +2,53 @@ const { City }=require(`../models/index`);
 
 class CityRepository{
 
-    async createTable({name}) {
-        try {
-            const responce=await City.create({name});
-            return responce;
+    async createCity({name}){
+        try {  
+            const city= await City.create({\
+                name
+            });
+            return city;
         } catch (error) {
+            console.log("Some error occured at repository level");
             throw {error};
         }
     }
-    async deleteTable(cityId){
+
+    async deleteCity(cityId){
         try {
             await City.destroy({
+                where :{
+                    id:cityId
+                }
+            });
+            return true;
+        } catch (error) {
+            console.log("Some error occured at repository level");
+            throw {error};
+        }
+    }
+
+    async updateCity(city,cityId){
+        try {
+            await City.update(city,{
                 where:{
                     id:cityId
                 }
             });
+            return true;
         } catch (error) {
-            throw {error}
+            console.log("Some error occured at repository level");
+            throw {error};
+        }
+    }
+
+    async getCity(cityId){
+        try {
+            const city=await City.findByPk(cityId);
+            return city;
+        } catch (error) {
+            console.log("Some error occured at repository level");
+            throw {error};
         }
     }
 };
