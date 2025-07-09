@@ -3,6 +3,9 @@ const CityRepo=require("./repository/City_Repo");
 const { PORT }=require("./config/ServerConfig");
 const bodyParser = require("body-parser");
 const ApiRoutes=require(`./routes/index`);
+const {City,Airport}=require(`./models/index`);
+// const sequelize=require(`sequelize`);
+
 
 const setUpAndStartServer= async() => {
     const PORT=3000;
@@ -17,6 +20,7 @@ const setUpAndStartServer= async() => {
     app.use('/api',ApiRoutes);
     app.listen(PORT,async ()=> {
         console.log(`server started at ${PORT}`);
+        // db.sequelize.sync({alter:true});
     });
 }
 setUpAndStartServer();
