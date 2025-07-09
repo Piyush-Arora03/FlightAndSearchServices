@@ -1,7 +1,11 @@
 const express=require(`express`);
 const CityController= require(`../../controllers/CityController`); 
+const FlightController=require(`../../controllers/FlightController`);
 
 const router=express.Router();
+
+router.post('/flight',FlightController.create);
+router.get('/flight',FlightController.get);
 
 router.post('/city',CityController.create);
 router.get('/city/:id',CityController.get);
