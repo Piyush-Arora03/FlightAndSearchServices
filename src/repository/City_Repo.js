@@ -1,79 +1,79 @@
-const { City }=require(`../models/index`);
-const { Op }=require(`sequelize`);
+const { City } = require(`../models/index`);
+const { Op } = require(`sequelize`);
 
-class CityRepository{
+class CityRepository {
 
-    async createCity({name}){
-        try {  
-            const city= await City.create({
+    async createCity({ name }) {
+        try {
+            const city = await City.create({
                 name
             });
             return city;
         } catch (error) {
             console.log(`Some error occured at repository level ${error}`);
-            throw {error};
+            throw { error };
         }
     }
 
-    async deleteCity(cityId){
+    async deleteCity(cityId) {
         try {
             await City.destroy({
-                where :{
-                    id:cityId
+                where: {
+                    id: cityId
                 }
             });
             return true;
         } catch (error) {
             console.log(`Some error occured at repository level ${error}`);
-            throw {error};
+            throw { error };
         }
     }
 
-    async updateCity(city,cityId){
+    async updateCity(city, cityId) {
         try {
-            await City.update(city,{
-                where:{
-                    id:cityId
+            await City.update(city, {
+                where: {
+                    id: cityId
                 }
             });
             return true;
         } catch (error) {
             console.log(`Some error occured at repository level ${error}`);
-            throw {error};
+            throw { error };
         }
     }
 
-    async getCity(cityId){
+    async getCity(cityId) {
         try {
-            const city=await City.findByPk(cityId);
+            const city = await City.findByPk(cityId);
             if (!city) {
                 throw new Error("City not found");
             }
             return city;
         } catch (error) {
             console.log(`Some error occured at repository level ${error}`);
-            throw {error};
+            throw { error };
         }
     }
 
-    async getAllCities(filter){
+    async getAllCities(filter) {
         try {
-            if(filter.name){
-                const cities=await City.findAll({
-                    where:{
-                        name:{
-                            [Op.startsWith] : filter.name
+            if (filter.name) {
+                const cities = await City.findAll({
+                    where: {
+                        name: {
+                            [Op.startsWith]: filter.name
                         }
                     }
                 });
                 return cities;
             }
-            const cities=await City.findAll();
+            const cities = await City.findAll();
             return cities;
         } catch (error) {
             console.log(`Some error occured at repository level ${error}`);
-            throw {error};
+            throw { error };
         }
     }
 };
-module.exports=CityRepository;
+module.exports = CityRepository;
