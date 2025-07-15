@@ -43,6 +43,32 @@ class FlightRepository {
             throw { error };
         }
     }
+
+    async getFlightById(flightId){
+        try {
+            const flight=await Flight.findByPk(flightId);
+            return flight;
+        } catch (error) {
+            console.log(`something went wrong in Flight Repo ${error}`);
+            throw { error };
+        }
+    }
+
+    async updateFlight(flightId, data) {
+    try {
+        console.log(data);
+        const flight = await Flight.findByPk(flightId);
+        if (!flight) {
+            throw new Error('Flight not found');
+        }
+        await flight.update(data);
+        return flight;
+    } catch (error) {
+        console.log(`something went wrong in Flight Repo ${error}`);
+        throw { error };
+    }
+}
+
 }
 
 module.exports = FlightRepository;

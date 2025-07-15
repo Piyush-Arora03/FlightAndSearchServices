@@ -10,6 +10,8 @@ router.post('/airport', AirportController.create);
 
 router.post('/flight', FlightMiddleware.validationCreateFlight, FlightController.create);
 router.get('/flight', FlightController.get);
+router.get('/flight/:id', FlightController.getById);
+router.patch('/flight/:id', FlightController.update);
 
 router.post('/city', CityController.create);
 router.get('/city/:id', CityController.get);
