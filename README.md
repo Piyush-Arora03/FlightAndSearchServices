@@ -44,7 +44,7 @@ FlightsAndSearch/
 1. **Clone the Repository**
 
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/Piyush-Arora03/FlightAndSearchServices.git
    cd FlightsAndSearch
    ```
 
@@ -61,8 +61,6 @@ FlightsAndSearch/
    ```
    PORT=3000
    ```
-
-   > **Note:** Remove `const` from `.env` if present. It should be just `PORT=3000`.
 
 4. **Database Configuration**
 
